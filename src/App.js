@@ -2,9 +2,7 @@ import './App.css';
 
 function App() {
   return (
-    <div className="App">
-      Hello, world!
-    </div>
+    <div className='font-bold text-green-800'>Hello, world! </div>
   );
 }
 
