@@ -1,8 +1,20 @@
-import { useState } from "react";
+import { useRef, useState } from "react";
 import Header from "./Header";
+import checkValidData from "../utils/validate";
 
 const Login = () => {
     const [isSignInForm, setIsSignInForm] = useState(true);
+
+    const [errorMessage, setErrorMessage] = useState(null);
+
+    const email = useRef(null);
+    const password = useRef(null);
+
+    const handleButtonClick = () => {
+        const validationMessage = checkValidData(email.current.value, password.current.value);
+        console.log(validationMessage);
+        setErrorMessage(validationMessage);
+    }
 
     const toggleSignInForm = () => {
         setIsSignInForm(!isSignInForm);
@@ -29,7 +41,7 @@ const Login = () => {
                         {isSignInForm ? "Sign In" : "Sign Up"}
                     </h2>
 
-                    <form className="space-y-8">
+                    <form onSubmit={(e) => e.preventDefault()} className="space-y-8">
                         {/* Full Name (only for Sign Up) */}
                         {!isSignInForm && (
                             <div className="relative">
@@ -51,6 +63,7 @@ const Login = () => {
                         {/* Email Input */}
                         <div className="relative">
                             <input
+                                ref={email}
                                 type="email"
                                 id="email"
                                 className="w-full p-4 bg-black bg-opacity-20 text-white rounded border border-gray-400 focus:border-2 focus:border-white focus:outline-none focus:ring-2 focus:ring-white peer"
@@ -67,6 +80,7 @@ const Login = () => {
                         {/* Password Input */}
                         <div className="relative">
                             <input
+                                ref={password}
                                 type="password"
                                 id="password"
                                 className="w-full p-4 bg-black bg-opacity-20 text-white rounded border border-gray-400 focus:border-2 focus:border-white focus:outline-none focus:ring-2 focus:ring-white peer"
@@ -80,9 +94,15 @@ const Login = () => {
                             </label>
                         </div>
 
+                        {errorMessage && (
+                            <div className="text-red-600 font-semibold ml-2">
+                                {errorMessage}
+                            </div>
+                        )}
+
                         {/* Submit Button */}
                         <div>
-                            <button
+                            <button onClick={handleButtonClick}
                                 type="submit"
                                 className="w-full bg-red-600 py-2 rounded text-white font-semibold hover:bg-red-700 transition duration-300"
                             >
