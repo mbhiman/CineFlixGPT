@@ -93,15 +93,17 @@ const Login = () => {
 
                     {/* Additional Links */}
                     <div className="flex justify-between items-center text-gray-400 mt-4 text-sm">
-                        <div>
-                            <input type="checkbox" id="remember" className="cursor-pointer w-5" />
-                            <label htmlFor="remember" className="ml-2">
-                                {isSignInForm ? "Remember me" : ""}
-                            </label>
-                        </div>
-                        <a href="#" className="hover:underline">
+                        {isSignInForm && (
+                            <div>
+                                <input type="checkbox" id="remember" className="cursor-pointer w-5" />
+                                <label htmlFor="remember" className="ml-2">
+                                    {isSignInForm ? "Remember me" : ""}
+                                </label>
+                            </div>
+                        )}
+                        {/* <a href="#" className="hover:underline">
                             Need help?
-                        </a>
+                        </a> */}
                     </div>
 
                     {/* Toggle Sign Up/Sign In Link */}
