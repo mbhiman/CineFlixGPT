@@ -1,13 +1,14 @@
 // Import the functions you need from the SDKs you need
 import { initializeApp } from "firebase/app";
 import { getAnalytics } from "firebase/analytics";
+require('dotenv').config();
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
 
 // Your web app's Firebase configuration
 // For Firebase JS SDK v7.20.0 and later, measurementId is optional
 const firebaseConfig = {
-  apiKey: "AIzaSyDIdLUF9PfxIabwfbeheFnmVOwZzI_kKB8",
+  apiKey: process.env.FIREBASE_API_KEY,
   authDomain: "cineflixgpt-6495a.firebaseapp.com",
   projectId: "cineflixgpt-6495a",
   storageBucket: "cineflixgpt-6495a.firebasestorage.app",
